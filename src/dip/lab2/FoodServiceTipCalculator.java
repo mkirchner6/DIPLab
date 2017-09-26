@@ -12,14 +12,13 @@ public class FoodServiceTipCalculator {
     private static final double MIN_BILL = 0.00;
     private static final String BILL_ENTRY_ERR =
             "Error: bill must be greater than or equal to " + MIN_BILL;
-    private static final double GOOD_RATE = 0.20;
-    private static final double FAIR_RATE = 0.15;
-    private static final double POOR_RATE = 0.10;
+    
+    private double goodRate = 0.20;
+    private double fairRate = 0.15;
+    private double poorRate = 0.10;
 
     private double bill;
-    public enum ServiceQuality {
-        GOOD, FAIR, POOR
-    }
+
     private ServiceQuality serviceQuality;
 
     public FoodServiceTipCalculator(ServiceQuality q, double billAmt) {
@@ -27,18 +26,18 @@ public class FoodServiceTipCalculator {
         this.setBill(billAmt);
     }
 
-    public double getTip() {
+    public final double getTip() {
         double tip = 0.00; // always initialize local variables
 
         switch(serviceQuality) {
             case GOOD:
-                tip = bill * GOOD_RATE;
+                tip = bill * goodRate;
                 break;
             case FAIR:
-                tip = bill * FAIR_RATE;
+                tip = bill * fairRate;
                 break;
             case POOR:
-                tip = bill * POOR_RATE;
+                tip = bill * poorRate;
                 break;
         }
 
@@ -57,8 +56,41 @@ public class FoodServiceTipCalculator {
         serviceQuality = q;
     }
 
-    public ServiceQuality getServiceQuality() {
+    public final ServiceQuality getServiceQuality() {
         return serviceQuality;
+    }
+
+    public final double getGoodRate() {
+        return goodRate;
+    }
+
+    public final void setGoodRate(double goodRate) {
+        if(goodRate < 0 || goodRate > 1){
+            throw new IllegalArgumentException("Must be a valid percent");
+        }
+        this.goodRate = goodRate;
+    }
+
+    public final double getFairRate() {
+        return fairRate;
+    }
+
+    public final void setFairRate(double fairRate) {
+        if(fairRate < 0 || fairRate > 1){
+            throw new IllegalArgumentException("Must be a valid percent");
+        }
+        this.fairRate = fairRate;
+    }
+
+    public final double getPoorRate() {
+        return poorRate;
+    }
+
+    public final void setPoorRate(double poorRate) {
+        if(poorRate < 0 || poorRate > 1){
+            throw new IllegalArgumentException("Must be a valid percent");
+        }
+        this.poorRate = poorRate;
     }
 
 }

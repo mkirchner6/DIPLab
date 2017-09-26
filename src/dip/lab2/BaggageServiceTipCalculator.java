@@ -8,48 +8,20 @@ package dip.lab2;
  *
  * @author your name goes here
  */
-public class BaggageServiceTipCalculator {
-    private double goodRate = 0.20;
-    private double fairRate = 0.15;
-    private double poorRate = 0.10;
-
+public class BaggageServiceTipCalculator implements TipCalculator{
     private double baseTipPerBag;
     private int bagCount;
-    
-    private ServiceQuality serviceQuality;
+    private double tipPercent;
 
-    public BaggageServiceTipCalculator(ServiceQuality q, int bags) {
-        this.setServiceRating(q); // perform validation
+    public BaggageServiceTipCalculator(double tipPercent, int bags) {
+        this.setTipPercent(tipPercent); // perform validation
         this.setBagCount(bags);
 
         baseTipPerBag = 1.00; // set default value
     }
 
     public final double getTip() {
-        double tip = 0.00; // always initialize local variables
-
-        switch(serviceQuality) {
-            case GOOD:
-                tip = baseTipPerBag * bagCount * (1 + goodRate);
-                break;
-            case FAIR:
-                tip = baseTipPerBag * bagCount * (1 + fairRate);
-                break;
-            case POOR:
-                tip = baseTipPerBag * bagCount * (1 + poorRate);
-                break;
-        }
-
-        return tip;
-    }
-
-    public final void setServiceRating(ServiceQuality q) {
-        // No need to validate because enums provide type safety!
-        serviceQuality = q;
-    }
-
-    public final ServiceQuality getServiceQuality() {
-        return serviceQuality;
+        return baseTipPerBag * bagCount * (1 + tipPercent);
     }
 
     public final int getBagCount() {
@@ -76,39 +48,16 @@ public class BaggageServiceTipCalculator {
         this.baseTipPerBag = baseTipPerBag;
     }
 
-    public final double getGoodRate() {
-        return goodRate;
+    public final double getTipPercent() {
+        return tipPercent;
     }
 
-    public final void setGoodRate(double goodRate) {
-        if(goodRate < 0 || goodRate > 1){
+    public final void setTipPercent(double tipPercent) {
+        if(tipPercent < 0 || tipPercent > 1){
             throw new IllegalArgumentException("Must be a valid percent");
         }
-        this.goodRate = goodRate;
-    }
-
-    public final double getFairRate() {
-        return fairRate;
-    }
-
-    public final void setFairRate(double fairRate) {
-        if(fairRate < 0 || fairRate > 1){
-            throw new IllegalArgumentException("Must be a valid percent");
-        }
-        this.fairRate = fairRate;
-    }
-
-    public final double getPoorRate() {
-        return poorRate;
-    }
-
-    public final void setPoorRate(double poorRate) {
-        if(poorRate < 0 || poorRate > 1){
-            throw new IllegalArgumentException("Must be a valid percent");
-        }
-        this.poorRate = poorRate;
+        this.tipPercent = tipPercent;
     }
 
     
-
 }

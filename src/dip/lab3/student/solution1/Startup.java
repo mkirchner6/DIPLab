@@ -10,10 +10,12 @@ package dip.lab3.student.solution1;
  * @author mattkirchner
  */
 public class Startup {
-    MessageInput input = new MessageInputFromConsole();
-    MessageOutput output = new MessageOutputToConsole();
-    
-    MessageService messageService = new MessageService(input, output);
-    
-    messageService.getAndDisplayMessage();
+    public static void main(String[] args) {
+        MessageInput input = new MessageInputFromConsole();
+        MessageOutput output = new MessageOutputToConsole();
+
+        MessageService messageService = new MessageService(input, output);
+
+        messageService.getAndDisplayMessage();
+    }
 }

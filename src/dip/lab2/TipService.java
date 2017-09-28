@@ -10,5 +10,24 @@ package dip.lab2;
  * @author mattkirchner
  */
 public class TipService {
-    private TipCalculator calc = new FoodServiceTipCalculator(.2,50);
+    private TipCalculator calc;
+
+    public TipService(TipCalculator calc) {
+        this.setCalc(calc);
+    }
+
+    public final TipCalculator getCalc() {
+        return calc;
+    }
+
+    public final void setCalc(TipCalculator calc) {
+        if(calc == null){
+            throw new IllegalArgumentException("Must have an object");
+        }
+        this.calc = calc;
+    }
+    
+    public final double getTip(){
+        return calc.getTip();
+    }
 }

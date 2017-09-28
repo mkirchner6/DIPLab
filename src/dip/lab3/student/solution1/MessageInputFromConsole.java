@@ -5,10 +5,15 @@
  */
 package dip.lab3.student.solution1;
 
+import java.util.*;
 /**
  *
  * @author mattkirchner
  */
-public interface InputMessage {
-    public abstract String getMessage();
+public class MessageInputFromConsole implements MessageInput{
+    public final String getMessage(){
+        System.out.println("Enter your message");
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
+    }
 }

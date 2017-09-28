@@ -10,8 +10,8 @@ package dip.lab3.student.solution1;
  * @author mattkirchner
  */
 public class Startup {
-    InputService input = new InputService(new InputMessageFromConsole());
-    OutputService output = new OutputService(new OutputMessageToConsole());
+    MessageInput input = new MessageInputFromConsole();
+    MessageOutput output = new MessageOutputToConsole();
     
     MessageService messageService = new MessageService(input, output);
     

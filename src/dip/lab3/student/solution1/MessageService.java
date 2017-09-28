@@ -10,30 +10,30 @@ package dip.lab3.student.solution1;
  * @author mattkirchner
  */
 public class MessageService {
-    private InputService input;
-    private OutputService output;
+    private MessageInput input;
+    private MessageOutput output;
 
-    public MessageService(InputService input, OutputService output) {
+    public MessageService(MessageInput input, MessageOutput output) {
         this.setInput(input);
         this.setOutput(output);
     }
 
-    public final InputService getInput() {
+    public final MessageInput getInput() {
         return input;
     }
 
-    public final void setInput(InputService input) {
+    public final void setInput(MessageInput input) {
         if(input == null){
             throw new IllegalArgumentException("Must have an object");
         }
         this.input = input;
     }
 
-    public final OutputService getOutput() {
+    public final MessageOutput getOutput() {
         return output;
     }
 
-    public final void setOutput(OutputService output) {
+    public final void setOutput(MessageOutput output) {
         if(output == null){
             throw new IllegalArgumentException("Must have an object");
         }
